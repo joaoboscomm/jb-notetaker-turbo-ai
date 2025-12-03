@@ -45,10 +45,9 @@ export const apiService = {
   },
 
   saveNote: async (note: Note): Promise<Note> => {
-    // If ID is numeric (from Django), it's an update. If it's temp string or undefined, create.
-    // Note: React key generation usually uses strings like 'temp_123', Django uses Integers.
-    // We check if ID is numeric to decide PUT vs POST.
-    const isNew = isNaN(Number(note.id)); 
+    // If ID is numeric (or effectively numeric string from DB), it's an update. 
+    // Temp IDs from frontend usually start with "temp_"
+    const isNew = typeof note.id === 'string' && note.id.startsWith('temp_');
     
     if (isNew) {
       const { id, ...data } = note; // Drop temp ID
@@ -71,7 +70,7 @@ export const apiService = {
   },
 
   saveCategory: async (category: Category): Promise<Category> => {
-    const isNew = category.id.startsWith('cat_') || isNaN(Number(category.id));
+    const isNew = typeof category.id === 'string' && (category.id.startsWith('cat_') || category.id.startsWith('temp_'));
     if (isNew) {
       const { id, ...data } = category;
       const res = await api.post('/categories/', data);
@@ -82,8 +81,6 @@ export const apiService = {
     }
   },
   
-  // Bulk update support would need custom Django views, 
-  // for now we iterate (not efficient but works for conversion)
   updateNotesCategory: async (notes: Note[]) => {
       // In a real app, create a bulk update endpoint
       for (const n of notes) {
