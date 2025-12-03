@@ -1,11 +1,51 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# JB's Note Taker - Full Stack (Django + Next.js)
 
-  <h1>Built with AI Studio</h2>
+This project has been fully converted to a production-ready architecture.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 1. Prerequisites
+- Python 3.8+
+- Node.js 18+
+- npm or yarn
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 2. Setup Backend (Django)
 
-</div>
+1.  Navigate to the `backend` folder.
+2.  Create a virtual environment:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Run migrations:
+    ```bash
+    python manage.py makemigrations api
+    python manage.py migrate
+    ```
+5.  Start the server:
+    ```bash
+    python manage.py runserver
+    ```
+    The API will be available at `http://localhost:8000/api/`.
+
+## 3. Setup Frontend (Next.js)
+
+1.  Navigate to the `frontend` folder.
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+4.  Open `http://localhost:3000` in your browser.
+
+## 4. Usage
+
+1.  Go to the login page.
+2.  Enter an email/password to **Sign Up** (first time) or **Login**.
+3.  The frontend will communicate with the Django backend to store your notes and categories in the SQLite database (`db.sqlite3`).
