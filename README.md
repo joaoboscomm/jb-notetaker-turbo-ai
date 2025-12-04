@@ -1,5 +1,8 @@
 # JB's Note Taker - Turbo AI
 
+<img width="1247" height="859" alt="image" src="https://github.com/user-attachments/assets/78530188-f3bf-468d-8889-d3a001433e4f" />
+
+
 A charming note-taking application with a beautiful pastel aesthetic, built with Django REST Framework (backend) and Next.js (frontend).
 
 ## 🌟 Features
